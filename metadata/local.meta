@@ -1,0 +1,102 @@
+[inputs/monitor%3A%2F%2F%2Fmedia%2FFREECOM-HDD%2FLogs%2Fiptables_ufw.log]
+owner = admin
+version = 6.1.1
+modtime = 1402432980.802802000
+
+[inputs/monitor%3A%2F%2F%2Fmedia%2FFREECOM-HDD%2FLogs%2Fremote-hosts%2Fiptables_openwrt.log]
+owner = admin
+version = 6.1.1
+modtime = 1402432986.328864000
+
+[views/Home]
+version = 6.1.1
+modtime = 1402795658.974172000
+
+[savedsearches/Iptables%20Activity%20Summary]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402614131.114754000
+
+[savedsearches/Iptables%20Top%20Offenser]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402615098.925820000
+
+[savedsearches/Iptables%20Top%2010%20denied%20client%20by%20count]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402615302.032490000
+
+[savedsearches/Iptables%20Top%2010%20denied%20client%20by%20Country]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402615539.682211000
+
+[savedsearches/Iptables%20Top%2010%20denied%20Networking%20Services]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402615662.590622000
+
+[savedsearches/Iptables%20TOP%20denied%20Destination%20Ports]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402615893.746918000
+
+[savedsearches/Iptables%20TOP%2010%20Reporting%20Hosts]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402616005.140857000
+
+[views/global_analysis]
+owner = admin
+version = 6.1.1
+modtime = 1402742237.303261000
+
+[views/Global_Analysis]
+version = 6.1.1
+modtime = 1402795709.384516000
+
+[views/events_search_interface]
+owner = admin
+version = 6.1.1
+modtime = 1402823122.108370000
+
+[views/events_country_search_interface]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1402823264.950238000
+
+[macros/filter_badclients]
+version = 6.1.1
+modtime = 1402795891.469439000
+
+[macros/traffic_accepted]
+version = 6.1.1
+modtime = 1402795891.476029000
+
+[macros/traffic_denied]
+version = 6.1.1
+modtime = 1402795891.479160000
+
+[app/install/is_configured]
+version = 6.1.1
+modtime = 1402795891.486796000
+
+[macros/iptables_datasource]
+version = 6.1.1
+modtime = 1402795891.472643000

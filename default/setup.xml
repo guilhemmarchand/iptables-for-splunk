@@ -1,0 +1,53 @@
+<setup>
+
+  <block title="Source of Iptables Events" endpoint="admin/macros" entity="iptables_datasource">
+
+  <text>Configure the source of Iptables Events, index name and sourcetype:</text>
+  
+    <input field="definition">
+      <label>Netfilter Iptables Datasource:</label>
+      <type>text</type>
+    </input>
+
+  </block>
+
+
+
+  <block title="Iptables Traffic Accepted" endpoint="admin/macros" entity="traffic_accepted">
+
+  <text>Configure patterns for Iptables accepted traffic:</text>
+  <text>Non case sensitive and multiple entries allowed with OR delimiter</text>
+  
+    <input field="definition">
+      <label>Accepted Traffic Identification:</label>
+      <type>text</type>
+    </input>
+
+  </block>
+
+  <block title="Iptables Traffic Dropped or Rejected" endpoint="admin/macros" entity="traffic_denied">
+
+  <text>Configure patterns for Iptables denied traffic:</text>
+  <text>Non case sensitive and multiple entries allowed with OR delimiter</text>
+
+    <input field="definition">
+      <label>Denied Traffic Identification:</label>
+      <type>text</type>
+    </input>
+
+  </block>
+
+  <block title="Filter bad IP clients to be excluded from searches" endpoint="admin/macros" entity="filter_badclients">
+
+  <text>You can set here IP Clients that will be excluded from searches and reports:</text>
+  <text>Multiple entries allowed with OR delimiter</text>
+
+
+    <input field="definition">
+      <label>IP(s) Blacklist:</label>
+      <type>text</type>
+    </input>
+
+  </block>
+  
+</setup>

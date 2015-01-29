@@ -1,0 +1,72 @@
+<form stylesheet="ui_simple.css,single_value.css">
+  <label>Events IP Clients Search Interface</label>
+  <description/>
+  <fieldset submitButton="false">
+    <input type="time" searchWhenChanged="true">
+      <label>Time Range:</label>
+      <default>
+        <earliestTime>-24h@h</earliestTime>
+        <latestTime>now</latestTime>
+      </default>
+    </input>
+      <input type="multiselect" token="traffic_filter" searchWhenChanged="true">
+        <label>Show by Type of Traffic:</label>
+        <choice value="`traffic_accepted`">Accepted</choice>
+        <choice value="`traffic_denied`">Denied</choice>
+        <default>`traffic_denied`</default>
+        <valuePrefix>(</valuePrefix>
+        <valueSuffix>)</valueSuffix>
+        <delimiter> OR </delimiter>
+      </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+      <div class="custom">
+        <h1>SEARCH IP CLIENTS</h1>
+      </div>
+     </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <input type="text" token="clientip" searchWhenChanged="true">
+        <label>Search for IP(s) and press Enter:</label>
+      </input>
+      <input type="multiselect" token="clientip" searchWhenChanged="true">
+        <label>Or choose Top 100 known IP's in the list:</label>
+        <populatingSearch earliest="$earliest$" latest="$latest$" fieldForLabel="clientip" fieldForValue="clientip">`iptables_datasource` $traffic_filter$ `filter_badclients` | top limit=100 clientip | sort clientip</populatingSearch>
+        <valuePrefix>clientip="</valuePrefix>
+        <valueSuffix>"</valueSuffix>
+        <delimiter> OR </delimiter>
+      </input>
+      <table>
+        <searchString>`iptables_datasource` $clientip$ $traffic_filter$ | stats count As "Number of Connections" by clientip | iplocation clientip | fields clientip,"Number of Connections",Country,City</searchString>
+        <earliestTime>$earliest$</earliestTime>
+        <latestTime>$latest$</latestTime>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="count">10</option>
+      </table>
+      <event>
+        <searchString>`iptables_datasource` $clientip$ $traffic_filter$ | eval percent=round(percent,2) | iplocation clientip | fields _time, clientip,Country,City</searchString>
+        <earliestTime>$earliest$</earliestTime>
+        <latestTime>$latest$</latestTime>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">0</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="list.drilldown">full</option>
+        <option name="list.wrap">1</option>
+        <option name="maxLines">5</option>
+        <option name="raw.drilldown">full</option>
+        <option name="table.drilldown">all</option>
+        <option name="table.wrap">1</option>
+        <option name="type">list</option>
+        <option name="count">10</option>
+        <fields>["host","source","sourcetype"]</fields>
+      </event>
+    </panel>
+  </row>
+</form>

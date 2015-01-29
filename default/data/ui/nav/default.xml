@@ -1,0 +1,15 @@
+<nav search_view="search" color="#5379AF">
+
+  <view name="Home" default="true"/>
+  <view name="search" />
+  <view name="data_models" />
+  <view name="reports" />
+  <view name="alerts" />
+  <view name="dashboards" />
+
+    <collection label="Settings">
+        <a href="/manager/iptables/apps/local/iptables/setup?action=edit">Netfilter Iptables Configuration</a>
+    </collection>
+
+  
+</nav>
