@@ -1,214 +1,176 @@
-<form stylesheet="ui_simple.css,single_value.css">
-  <label>Events Country Search Interface</label>
-  <fieldset submitButton="false">
-    <input type="time" searchWhenChanged="true">
-      <label>Time Range:</label>
-      <default>
-        <earliestTime>-24h@h</earliestTime>
-        <latestTime>now</latestTime>
-      </default>
-    </input>
-      <input type="multiselect" token="traffic_filter" searchWhenChanged="true">
-        <label>Show by Type of Traffic:</label>
-        <choice value="`traffic_accepted`">Accepted</choice>
-        <choice value="`traffic_denied`">Denied</choice>
-        <default>`traffic_denied`</default>
-        <valuePrefix>(</valuePrefix>
-        <valueSuffix>)</valueSuffix>
-        <delimiter> OR </delimiter>
-      </input>
-  </fieldset>
-  <row>
-    <panel>
-      <html>
-      <div class="custom">
-        <h1>SEARCH ACTIVITY BY COUNTRY</h1>
-      </div>
-     </html>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <input type="text" token="Country" searchWhenChanged="true">
-        <label>Search for a Country and press Enter:</label>
-        <prefix>Country="</prefix>
-        <suffix>"</suffix>
-      </input>
-      <input type="multiselect" token="Country" searchWhenChanged="true">
-        <label>Or choose known Countries in the list:</label>
-        <populatingSearch earliest="$earliest$" latest="$latest$" fieldForLabel="Country" fieldForValue="Country">`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | stats count by Country | sort Country</populatingSearch>
-        <valuePrefix>Country="</valuePrefix>
-        <valueSuffix>"</valueSuffix>
-        <delimiter> OR </delimiter>
-      </input>
-      <table>
-        <title>Global Country Stats (over All Traffic)</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | top limit=0 Country | eval percent=round(percent,2) | search $Country$</searchString>
-        <earliestTime>$earliest$</earliestTime>
-        <latestTime>$latest$</latestTime>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">column</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="drilldown">cell</option>
-        <option name="count">10</option>
-      </table>
-      <table>
-        <title>Clients IP by Country</title>
-        <searchString>`iptables_datasource` | iplocation clientip | search $Country$ | stats count As "Number of Connections" by clientip | iplocation clientip | fields clientip,"Number of Connections",Country,City</searchString>
-        <earliestTime>$earliest$</earliestTime>
-        <latestTime>$latest$</latestTime>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="drilldown">cell</option>
-        <option name="count">10</option>
-      </table>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <chart>
-        <title>Top 10 Clients IP by Network Services</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | eval Service=if(isnull(Service),"Unknown", Service) | top limit=10 Service | eval percent=round(percent,2)</searchString>
-        <earliestTime>$earliest$</earliestTime>
-        <latestTime>$latest$</latestTime>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="count">10</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="height">310px</option>
-      </chart>
-    </panel>
-    <panel>
-      <table>
-        <title>Table Stats Clients IP by Network Services</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | eval Service=if(isnull(Service),"Unknown", Service) | top limit=0 Service | eval percent=round(percent,2)</searchString>
-        <earliestTime>$earliest$</earliestTime>
-        <latestTime>$latest$</latestTime>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="drilldown">cell</option>
-        <option name="count">10</option>
-      </table>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <chart>
-        <title>Top 10 Clients IP by Destination Port</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | top limit=10 DPT | eval percent=round(percent,2) | rename DPT As "Destination Port"</searchString>
-        <earliestTime>$earliest$</earliestTime>
-        <latestTime>$latest$</latestTime>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="count">10</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="height">310px</option>
-      </chart>
-    </panel>
-    <panel>
-      <table>
-        <title>Table Stats Clients IP by Network Services</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | top limit=0 DPT | eval percent=round(percent,2) | rename DPT As "Destination Port"</searchString>
-        <earliestTime>$earliest$</earliestTime>
-        <latestTime>$latest$</latestTime>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="drilldown">cell</option>
-        <option name="count">10</option>
-      </table>
-    </panel>
-  </row>
+<form stylesheet="ui_simple.css">
+    <label>Events Country Search Interface</label>
+
+    <row>
+        <panel>
+            <title>Main filters:</title>
+            <input type="time" token="timerange" searchWhenChanged="true">
+                <label>Time Range:</label>
+                <default>
+                    <earliestTime>-24h@h</earliestTime>
+                    <latestTime>now</latestTime>
+                </default>
+            </input>
+            <input type="multiselect" token="traffic_filter" searchWhenChanged="true">
+                <label>Show by Type of Traffic:</label>
+                <choice value="`traffic_accepted`">Accepted</choice>
+                <choice value="`traffic_denied`">Denied</choice>
+                <default>`traffic_denied`</default>
+                <valuePrefix>(</valuePrefix>
+                <valueSuffix>)</valueSuffix>
+                <delimiter> OR </delimiter>
+            </input>
+        </panel>
+    </row>
+
+    <row>
+        <panel>
+            <html>
+                <div class="custom">
+                    <h1>SEARCH ACTIVITY BY COUNTRY</h1>
+                </div>
+            </html>
+        </panel>
+    </row>
+
+    <row>
+        <panel>
+            <input type="text" token="Country" searchWhenChanged="true">
+                <label>Search for a Country and press Enter:</label>
+                <prefix>Country="</prefix>
+                <suffix>"</suffix>
+            </input>
+            <input type="multiselect" token="Country" searchWhenChanged="true">
+                <label>Or choose known Countries in the list:</label>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | stats count by Country | sort Country</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <valuePrefix>Country="</valuePrefix>
+                <valueSuffix>"</valueSuffix>
+                <delimiter> OR </delimiter>
+                <fieldForLabel>Country</fieldForLabel>
+                <fieldForValue>Country</fieldForValue>
+            </input>
+            <table>
+                <title>Global Country Stats (over All Traffic)</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | top limit=0 Country | eval percent=round(percent,2) | search $Country$</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">cell</option>
+                <option name="count">10</option>
+            </table>
+            <table>
+                <title>Clients IP by Country</title>
+                <search>
+                    <query>`iptables_datasource` | iplocation clientip | search $Country$ | stats count As "Number of Connections" by clientip | iplocation clientip | fields clientip,"Number of Connections",Country,City</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">cell</option>
+                <option name="count">10</option>
+            </table>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <chart>
+                <title>Top 10 Clients IP by Network Services</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | eval Service=if(isnull(Service), DPT . ":" . PROTO . " (undef svc)", Service) | top limit=10 Service | eval percent=round(percent,2)</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">pie</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="height">310</option>
+            </chart>
+        </panel>
+        <panel>
+            <table>
+                <title>Table Stats Clients IP by Network Services</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | eval Service=if(isnull(Service), DPT . ":" . PROTO . " (undef svc)", Service) | top limit=0 Service | eval percent=round(percent,2)</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">cell</option>
+                <option name="count">10</option>
+            </table>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <chart>
+                <title>Top 10 Clients IP by Destination Port</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | top limit=10 DPT | eval percent=round(percent,2) | rename DPT As "Destination Port"</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">pie</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="height">310</option>
+            </chart>
+        </panel>
+        <panel>
+            <table>
+                <title>Table Stats Clients IP by Network Services</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | search $Country$ | top limit=0 DPT | eval percent=round(percent,2) | rename DPT As "Destination Port"</query>
+                    <earliest>$timerange.earliest$</earliest>
+                    <latest>$timerange.latest$</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">cell</option>
+                <option name="count">10</option>
+            </table>
+        </panel>
+    </row>
 </form>

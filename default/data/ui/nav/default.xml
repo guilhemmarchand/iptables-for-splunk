@@ -7,9 +7,9 @@
   <view name="alerts" />
   <view name="dashboards" />
 
-    <collection label="Settings">
-        <a href="/manager/iptables/apps/local/iptables/setup?action=edit">Netfilter Iptables Configuration</a>
-    </collection>
+  <collection label="Help &amp; Settings">
+    <a href="/manager/iptables/apps/local/iptables/setup?action=edit">App configuration</a>
+    <a href="Help">Help</a>
+  </collection>
 
-  
 </nav>

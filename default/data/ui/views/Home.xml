@@ -1,317 +1,236 @@
-<form stylesheet="Home.css,hover.css,singlevalue.css,hide_timeindicator.css">
-  <label>Netfilter Iptables</label>
-  <description>Version 3.1.0</description>
-  <searchTemplate>| `indexes_datestats` | where (sourcetype == "iptables_source")</searchTemplate>
-  <row>
-    <panel>
-      <html>
+<form stylesheet="Home.css,hover.css,hide_timeindicator.css">
+    <label>Netfilter Iptables</label>
+    <description>Version 3.2.0</description>
 
-		<br/>
+    <row>
+        <panel>
+            <html>
 
-		<div class="round-button">
-			<a href="Help">
-			<img src="../../static/app/iptables/icons/Help_Icon.svg" alt="Help"/>
-			</a>
-		</div>
+                <br/>
 
-      <div style="text-align: center;">
-        <img src="../../static/app/iptables/logos/netfilter.png"/>
-      </div>
-      
-      <div class="logosubtitle">        
-        <h2>Netfilter Iptables</h2>
-		</div>
+                <div style="text-align: center;">
+                    <img src="../../static/app/iptables/logos/netfilter.png"/>
+                </div>
 
-		<br/>
-		
+                <div class="logosubtitle">
+                    <h2>Netfilter Iptables</h2>
+                </div>
 
-		<div style="text-align: center;">
-          <a class="button2 glow" target="_blank" href="Global_Analysis">GLOBAL ANALYSIS</a>
-		</div>
-		
-		<br/>
-        <br/>        
+                <br/>
 
-		<div class="imgheader">
-        <img src="../../static/app/iptables/icons/grey_theme/search.png" alt="Info"/>
-		<h2>Search Interfaces</h2>		
-		</div>
+            </html>
+        </panel>
+    </row>
 
-		<div class="ui_list">
+    <row>
+        <panel>
+            <html>
+                <div style="text-align: center;">
+                    <a class="button2_lowpadding glow" href="Global_Analysis">GLOBAL ANALYSIS</a>
+                </div>
+            </html>
+        </panel>
+        <panel>
+            <html>
+                <div style="text-align: center;">
+                    <a class="button2_lowpadding glow" href="events_country_search_interface">COUNTRY ANALYSIS</a>
+                </div>
+            </html>
+        </panel>
+        <panel>
+            <html>
+                <div style="text-align: center;">
+                    <a class="button2_lowpadding glow" href="events_search_interface">IP ANALYSIS</a>
+                </div>
+            </html>
+        </panel>
+    </row>
 
-         <br/>
-         <br/>
-          
-      	<li>
-              <a href="events_country_search_interface" target="_blank">Events Country Clients Search Interface</a>
-			</li>      
-
-         <br/>
-
-      	<li>
-              <a href="events_search_interface" target="_blank">Events IP Clients Search Interface</a>
-			</li>      
-
-         <br/>          
-         <br/>
-         
-		</div>
-                
-
-		<div class="imgheader">
-        <img src="../../static/app/iptables/icons/grey_theme/info.png" alt="Info"/>
-		<h2>Application Informations</h2>		
-		</div>
-
-		<div class="ui_list">
-
-         <br/>
-         <br/>
-          
-      	<li>
-              <a href="../../../dj/en-us/iptables/System_dj" target="_blank">Application Internal Statistics</a>
-			</li>      
-
-         <br/>
-         <br/>
-         
-		</div>
-        
-
-        
-        
-    </html>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <html>
-      <div class="custom">
-        <h1>INDEXING INFORMATIONS</h1>
-      </div>
-     </html>
-      <single>
-        <searchPostProcess>fields index</searchPostProcess>
-        <option name="linkView">search</option>
-        <option name="underLabel">DATA INDEX NAME</option>
-        <option name="drilldown">none</option>
-        <option name="drilldown">all</option>
-        <option name="linkFields">result</option>
-        <option name="linkSearch">| `indexes_datestats` | where (sourcetype == "iptables_source")</option>
-      </single>
-      <single>
-        <searchPostProcess>fields First*</searchPostProcess>
-        <option name="linkView">search</option>
-        <option name="underLabel">DATE OF FIRST EVENT</option>
-        <option name="drilldown">none</option>
-        <option name="refresh.auto.interval">30</option>
-        <option name="drilldown">all</option>
-        <option name="linkFields">result</option>
-        <option name="linkSearch">| `indexes_datestats` | where (sourcetype == "iptables_source")</option>
-      </single>
-      <single>
-        <searchString>| `indexes_datestats` | where (sourcetype == "iptables_source") | fields Last*</searchString>
-        <option name="linkView">search</option>
-        <option name="underLabel">DATE OF LAST EVENT</option>
-        <option name="drilldown">none</option>
-        <option name="refresh.auto.interval">30</option>
-        <option name="drilldown">all</option>
-        <option name="linkFields">result</option>
-        <option name="linkSearch">| `indexes_datestats` | where (sourcetype == "iptables_source")</option>
-      </single>
-      <single>
-        <searchName>Hosts with data within last 7 days</searchName>
-        <option name="beforeLabel">There have been</option>
-        <option name="linkView">search</option>
-        <option name="afterLabel">Host(s) with activity</option>
-        <option name="underLabel">IN THE LAST 7 DAYS</option>
-        <option name="refresh.auto.interval">300</option>
-        <option name="field">count</option>
-        <option name="drilldown">all</option>
-        <option name="linkFields">result</option>
-        <option name="linkSearch">`iptables_datasource` earliest="-7d@d" latest="now" | stats dc(hosts) As count</option>
-      </single>
-      <single>
-        <searchName>Volume of Data indexed Today</searchName>
-        <option name="beforeLabel">There have been</option>
-        <option name="linkView">search</option>
-        <option name="afterLabel">MB of data indexed</option>
-        <option name="underLabel">TODAY</option>
-        <option name="refresh.auto.interval">130</option>
-        <option name="field">total_MB</option>
-        <option name="drilldown">all</option>
-        <option name="linkFields">result</option>
-        <option name="linkSearch">index=_internal source=*metrics.log group=per_index_thruput series="iptables_index" | eval MB=(kb/1024) | timechart span=1d sum(MB) As total_MB | eval total_MB=round(total_MB,2)</option>
-      </single>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <input type="multiselect" token="traffic_filter" searchWhenChanged="true">
-        <label>Show by Type of Traffic:</label>
-        <choice value="`traffic_accepted`">Accepted</choice>
-        <choice value="`traffic_denied`">Denied</choice>
-        <default>`traffic_denied`</default>
-        <valuePrefix>(</valuePrefix>
-        <valueSuffix>)</valueSuffix>
-        <delimiter> OR </delimiter>
-      </input>
-      <input type="text" token="autorefresh" searchWhenChanged="true">
-        <label>Auto Refresh polling time (seconds):</label>
-        <default>120</default>
-      </input>
-      <html>
-      <div class="custom">
-        <h1>LAST 24 HOURS SUMMARY ACTIVITY</h1>
-      </div>
-     </html>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <map>
-        <title>World Map of Connections</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation allfields=true clientip | geostats globallimit=10 latfield=lat longfield=lon count by clientip</searchString>
-        <earliestTime>-24h</earliestTime>
-        <latestTime>now</latestTime>
-        <option name="mapping.data.maxClusters">100</option>
-        <option name="mapping.drilldown">all</option>
-        <option name="mapping.map.center">(0,0)</option>
-        <option name="mapping.map.zoom">2</option>
-        <option name="mapping.markerLayer.markerMaxSize">50</option>
-        <option name="mapping.markerLayer.markerMinSize">10</option>
-        <option name="mapping.markerLayer.markerOpacity">0.8</option>
-        <option name="mapping.tileLayer.maxZoom">7</option>
-        <option name="mapping.tileLayer.minZoom">0</option>
-        <option name="refresh.auto.interval">$autorefresh$</option>
-        <option name="drilldown">all</option>
-      </map>
-      <table>
-        <title>Top 10 Clients IP</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | top limit=10 clientip | eval percent=round(percent,2) | iplocation clientip | fields clientip,count,percent,Country,City</searchString>
-        <earliestTime>-24h</earliestTime>
-        <latestTime>now</latestTime>
-        <option name="wrap">true</option>
-        <option name="rowNumbers">false</option>
-        <option name="dataOverlayMode">none</option>
-        <option name="drilldown">cell</option>
-        <option name="count">10</option>
-        <option name="refresh.auto.interval">$autorefresh$</option>
-      </table>
-    </panel>
-    <panel>
-      <chart>
-        <title>Trend by volume of connections</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | timechart `inline_customspan` count as Denied_Connections by iptables_host</searchString>
-        <earliestTime>-24h</earliestTime>
-        <latestTime>now</latestTime>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.text">Time</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.text">Connections</option>
-        <option name="charting.axisTitleY.visibility">collapsed</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">area</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">stacked</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">bottom</option>
-        <option name="height">320px</option>
-        <option name="refresh.auto.interval">$autorefresh$</option>
-      </chart>
-      <chart>
-        <title>Trend by Country</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | timechart limit=10 `inline_customspan` count as Denied_Connections by Country | fields - NULL</searchString>
-        <earliestTime>-24h</earliestTime>
-        <latestTime>now</latestTime>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.text">Time</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.text">Connections</option>
-        <option name="charting.axisTitleY.visibility">collapsed</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">area</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">stacked</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">bottom</option>
-        <option name="height">320px</option>
-        <option name="refresh.auto.interval">$autorefresh$</option>
-      </chart>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <chart>
-        <title>Top 10 Network Services</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | top limit=10 Service | eval percent=round(percent,2)</searchString>
-        <earliestTime>-24h</earliestTime>
-        <latestTime>now</latestTime>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="refresh.auto.interval">$autorefresh$</option>
-      </chart>
-    </panel>
-    <panel>
-      <chart>
-        <title>Top 10 Destination Ports</title>
-        <searchString>`iptables_datasource` $traffic_filter$ `filter_badclients` | top limit=10 DPT | rename DPT As "Destination Port" | eval percent=round(percent,2)</searchString>
-        <earliestTime>-24h</earliestTime>
-        <latestTime>now</latestTime>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
-        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
-        <option name="charting.axisTitleY.visibility">visible</option>
-        <option name="charting.axisTitleY2.visibility">visible</option>
-        <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
-        <option name="charting.axisY2.scale">inherit</option>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.nullValueMode">gaps</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
-        <option name="charting.chart.stackMode">default</option>
-        <option name="charting.chart.style">shiny</option>
-        <option name="charting.drilldown">all</option>
-        <option name="charting.layout.splitSeries">0</option>
-        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
-        <option name="refresh.auto.interval">$autorefresh$</option>
-      </chart>
-    </panel>
-  </row>
+    <row>
+        <panel>
+            <input type="multiselect" token="traffic_filter" searchWhenChanged="true">
+                <label>Show by Type of Traffic:</label>
+                <choice value="`traffic_accepted`">Accepted</choice>
+                <choice value="`traffic_denied`">Denied</choice>
+                <default>`traffic_denied`</default>
+                <valuePrefix>(</valuePrefix>
+                <valueSuffix>)</valueSuffix>
+                <delimiter> OR </delimiter>
+            </input>
+            <input type="text" token="autorefresh" searchWhenChanged="true">
+                <label>Auto Refresh polling time (seconds):</label>
+                <default>120s</default>
+            </input>
+            <html>
+                <div class="custom">
+                    <h1>LAST 24 HOURS SUMMARY ACTIVITY</h1>
+                </div>
+            </html>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <map>
+                <title>World Map of Connections</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation allfields=true clientip | geostats globallimit=10 latfield=lat longfield=lon count by clientip</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                    <refresh>$autorefresh$</refresh>
+                    <refreshType>delay</refreshType>
+                </search>
+                <option name="mapping.data.maxClusters">100</option>
+                <option name="mapping.drilldown">all</option>
+                <option name="mapping.map.center">(0,0)</option>
+                <option name="mapping.map.zoom">2</option>
+                <option name="mapping.markerLayer.markerMaxSize">50</option>
+                <option name="mapping.markerLayer.markerMinSize">10</option>
+                <option name="mapping.markerLayer.markerOpacity">0.8</option>
+                <option name="mapping.tileLayer.maxZoom">7</option>
+                <option name="mapping.tileLayer.minZoom">0</option>
+                <option name="drilldown">all</option>
+            </map>
+            <table>
+                <title>Top 10 Clients IP</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | top limit=10 clientip | eval percent=round(percent,2) | iplocation clientip | fields clientip,count,percent,Country,City</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                    <refresh>$autorefresh$</refresh>
+                    <refreshType>delay</refreshType>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">cell</option>
+                <option name="count">10</option>
+            </table>
+        </panel>
+        <panel>
+            <chart>
+                <title>Trend by volume of connections</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | timechart `inline_customspan` count as Denied_Connections by iptables_host</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                    <refresh>$autorefresh$</refresh>
+                    <refreshType>delay</refreshType>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.text">Time</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.text">Connections</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">bottom</option>
+                <option name="height">320</option>
+            </chart>
+            <chart>
+                <title>Trend by Country</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | timechart limit=10 `inline_customspan` count as Denied_Connections by Country | fields - NULL</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                    <refresh>$autorefresh$</refresh>
+                    <refreshType>delay</refreshType>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.text">Time</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.text">Connections</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">bottom</option>
+                <option name="height">320</option>
+            </chart>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <chart>
+                <title>Top 10 Network Services</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | eval Service=if(isnull(Service), DPT . ":" . PROTO . " (undef svc)", Service) | top limit=10 Service | eval percent=round(percent,2)</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                    <refresh>$autorefresh$</refresh>
+                    <refreshType>delay</refreshType>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">pie</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>Top 10 Destination Ports</title>
+                <search>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | top limit=10 DPT | rename DPT As "Destination Port" | eval percent=round(percent,2)</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                    <refresh>$autorefresh$</refresh>
+                    <refreshType>delay</refreshType>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">pie</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+            </chart>
+        </panel>
+    </row>
 </form>

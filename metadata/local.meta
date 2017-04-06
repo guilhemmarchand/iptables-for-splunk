@@ -82,21 +82,21 @@ version = 6.1.1
 modtime = 1402823264.950238000
 
 [macros/filter_badclients]
-version = 6.1.1
-modtime = 1402795891.469439000
+version = 6.5.2
+modtime = 1491432951.216233000
 
 [macros/traffic_accepted]
-version = 6.1.1
-modtime = 1402795891.476029000
+version = 6.5.2
+modtime = 1491432951.231195000
 
 [macros/traffic_denied]
-version = 6.1.1
-modtime = 1402795891.479160000
+version = 6.5.2
+modtime = 1491432951.238873000
 
 [app/install/is_configured]
-version = 6.1.1
-modtime = 1402795891.486796000
+version = 6.5.2
+modtime = 1491432951.252734000
 
 [macros/iptables_datasource]
-version = 6.1.1
-modtime = 1402795891.472643000
+version = 6.5.2
+modtime = 1491432951.224472000
