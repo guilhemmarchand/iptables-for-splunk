@@ -22,4 +22,6 @@ Splunk versions
 Index time operations
 ---------------------
 
-The application relies on Splunk standard syslog indexing, as such it does not perform any index time operation other than Splunk does by default when indexing syslog data.
+The Netfilter application relies on the installation of the "Linux Netfilter (iptables) technology add-on:
+
+- https://splunkbase.splunk.com/app/3089/

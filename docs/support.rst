@@ -30,6 +30,6 @@ Splunk Answers
 
 Access previous messages of users or open your own discussion:
 
-https://splunkbase.splunk.com/app/1353/
+https://splunkbase.splunk.com/app/1353
 
 http://answers.splunk.com/answers/app/1353

@@ -22,3 +22,5 @@ Overview:
    releasenotes
    knownissues
    support
+   openissue
+   requirements
