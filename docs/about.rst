@@ -16,13 +16,13 @@ It is a very simple and lightweight application.
 Splunk versions
 ---------------
 
-**The application is compatible with any version of Splunk 6.x**
+**The application is compatible with any version of Splunk 6.4 and later**
 
 ---------------------
 Index time operations
 ---------------------
 
-The Netfilter application relies on the installation of the "Linux Netfilter (iptables) technology add-on:
+The Netfilter application relies on the installation of the "Linux Netfilter (iptables)" technology add-on:
 
 - https://splunkbase.splunk.com/app/3089/
 
@@ -30,4 +30,10 @@ The Netfilter application relies on the installation of the "Linux Netfilter (ip
 Index creation
 --------------
 
-The Netfilter application **does not** create any index at installation time.
+The application **does not** create any index at installation time.
+
+----------------------------
+Summarization implementation
+----------------------------
+
+The application **does not** currently implement any piece of summarization, accelerated reports or data models.

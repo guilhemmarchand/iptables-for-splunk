@@ -4,6 +4,8 @@ Deployment and configuration
 
 The deployment of the application has to respect Splunk good practices depending on the topology of your deployment:
 
+.. _deployment:
+
 ==========
 Deployment
 ==========
@@ -62,7 +64,7 @@ Recommendations:
 Getting data in
 ---------------
 
-**pre-requisite:**
+**pre-requisites:**
 
 You need to install the TA for iptables:
 
@@ -74,15 +76,19 @@ https://github.com/doksu/TA_netfilter/wiki
 
 **Once you have deployed the TA:**
 
-The TA documentation provides sample configuration for iptables, in addition of this documentation:
+The TA documentation provides sample configuration for iptables, in addition of this documentation, you will find above some configuration examples.
 
-**Ubuntu based servers:**
+""""""""""""""""""""
+Ubuntu based servers
+""""""""""""""""""""
 
-1. Install ufw::
+1. Install ufw
+
+Run::
 
     sudo apt-get install ufw
 
-2. Configure ufw according to your needs, and activate logging:
+2. Configure ufw according to your needs, and activate logging
 
 https://help.ubuntu.com/community/UFW
 
@@ -94,7 +100,7 @@ The activity of ufw is logged on the server in::
 
     /var/log/ufw.log
 
-3. Make sure the Splunk instance can access this file with read permissions (you can use extended acl) and create a very basic and simple file monitor:
+3. Make sure the Splunk instance can access this file with read permissions (you can use extended acl) and create a very basic and simple file monitor
 
 *Example: (customize the name of the index according to your deloyment)*:
 
@@ -105,6 +111,70 @@ inputs.conf::
     sourcetype = syslog
 
 This inputs.conf can be configured in the TA local directory, or wherever you like.
+
+"""""""""""""""""""""
+Centos "like" servers
+"""""""""""""""""""""
+
+1. Configure iptables and activate logging
+
+CentOS doc: https://wiki.centos.org/HowTos/Network/IPTables
+
+*example configuration: /etc/sysconfig/iptables*::
+
+    *filter
+    :INPUT ACCEPT [0:0]
+    :FORWARD ACCEPT [0:0]
+    :OUTPUT ACCEPT [0:0]
+    :LOGGING - [0:0]
+    -A INPUT -i lo -j ACCEPT
+    -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+    -A INPUT -p tcp -m tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    -A INPUT -j LOGGING
+    -A OUTPUT -o lo -j ACCEPT
+    -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+    -A LOGGING -m limit --limit 2/min -j LOG --log-prefix "iptables: DROP: " --log-level 7
+    -A LOGGING -j DROP
+    COMMIT
+
+2. Configure rsyslog to log iptables events in a separated log file
+
+*example configuration: /etc/rsyslog.d/iptables.conf*::
+
+    :msg, contains, "iptables:" -/var/log/iptables.log
+    & ~
+
+Restart rsyslog::
+
+    service rsyslog restart
+
+3. Configure logrotate.d
+
+*example configuration: /etc/logrotate.d/iptables*::
+
+    /var/log/iptables.log
+    {
+            rotate 7
+            daily
+            missingok
+            notifempty
+            delaycompress
+            compress
+            create 0664 root root
+            postrotate
+                    invoke-rc.d rsyslog rotate > /dev/null
+            endscript
+    }
+
+4. Make sure the Splunk instance can access this file with read permissions (you can use extended acl) and create a very basic and simple file monitor
+
+*Example: (customize the name of the index according to your deloyment)*:
+
+inputs.conf::
+
+    [monitor:/var/log/iptables.log]
+    index = security_firewall_os
+    sourcetype = syslog
 
 Ensure Splunk is restarted after the deployment of this inputs.conf, et voila!
 

@@ -10,6 +10,10 @@ Welcome to Netfilter Iptables for Splunk's documentation!
    :alt: iptables_logo.png
    :align: center
 
+.. image:: img/app_preview.png
+   :alt: app_preview.png
+   :align: center
+
 Contents:
 
 Overview:
@@ -24,6 +28,7 @@ Overview:
    support
    openissue
    requirements
+   download
    deployment_matrix
 
 Installation and configuration:
@@ -33,3 +38,4 @@ Installation and configuration:
    :maxdepth: 2
 
    deployment
+   upgrade
