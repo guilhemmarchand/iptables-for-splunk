@@ -110,7 +110,7 @@
             <chart>
                 <title>Trend by volume of connections</title>
                 <search>
-                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | timechart `inline_customspan` count as Denied_Connections by iptables_host</query>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | timechart `iptables_span` count as Denied_Connections by iptables_host</query>
                     <earliest>-24h</earliest>
                     <latest>now</latest>
                     <refresh>$autorefresh$</refresh>
@@ -141,7 +141,7 @@
             <chart>
                 <title>Trend by Country</title>
                 <search>
-                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | timechart limit=10 `inline_customspan` count as Denied_Connections by Country | fields - NULL</query>
+                    <query>`iptables_datasource` $traffic_filter$ `filter_badclients` | iplocation clientip | timechart limit=10 `iptables_span` count as Denied_Connections by Country | fields - NULL</query>
                     <earliest>-24h</earliest>
                     <latest>now</latest>
                     <refresh>$autorefresh$</refresh>
