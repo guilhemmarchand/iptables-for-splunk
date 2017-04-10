@@ -9,7 +9,7 @@
 
   <collection label="Help &amp; Settings">
     <a href="/manager/iptables/apps/local/iptables/setup?action=edit">App configuration</a>
-    <a href="Help">Help</a>
+    <a href="http://iptables-for-splunk.readthedocs.io/en/latest">App online documentation</a>
   </collection>
 
 </nav>
