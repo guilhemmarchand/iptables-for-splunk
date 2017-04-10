@@ -6,17 +6,19 @@
 Welcome to Netfilter Iptables for Splunk's documentation!
 =========================================================
 
+.. image:: img/iptables_logo.png
+   :alt: iptables_logo.png
+   :align: center
+
 Contents:
+
+Overview:
+---------
 
 .. toctree::
    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   about
+   releasenotes
+   knownissues
+   support
