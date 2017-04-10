@@ -24,3 +24,12 @@ Overview:
    support
    openissue
    requirements
+   deployment_matrix
+
+Installation and configuration:
+-------------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   deployment

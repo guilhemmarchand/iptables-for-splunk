@@ -25,3 +25,9 @@ Index time operations
 The Netfilter application relies on the installation of the "Linux Netfilter (iptables) technology add-on:
 
 - https://splunkbase.splunk.com/app/3089/
+
+--------------
+Index creation
+--------------
+
+The Netfilter application **does not** create any index at installation time.
