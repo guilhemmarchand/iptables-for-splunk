@@ -1,6 +1,6 @@
 <form stylesheet="Home.css,hover.css,hide_timeindicator.css" hideEdit="true">
     <label>Netfilter Iptables</label>
-    <description>Version 3.2.0</description>
+    <description>Version 3.2.1</description>
 
     <row>
         <panel>
