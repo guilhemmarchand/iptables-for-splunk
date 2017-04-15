@@ -167,15 +167,3 @@ Notes: These macros can be customized as well with the setup page
     iseval = 0
 
 **Finally, the following macro "iptables_span" is used to improve Splunk charts**
-
-===============
-User interfaces
-===============
-
-
-
-
-
-
-
-
