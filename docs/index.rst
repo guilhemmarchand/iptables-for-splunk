@@ -39,3 +39,11 @@ Installation and configuration:
 
    deployment
    upgrade
+
+Guidance:
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   userguide
