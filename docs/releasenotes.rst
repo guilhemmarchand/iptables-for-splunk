@@ -11,6 +11,13 @@ Requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 What has been fixed by release
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+=======
+V3.2.1:
+=======
+
+- Minors improvements in app home page with bootstrap window providing shortcut access links to raw data
+
 =======
 V3.2.0:
 =======

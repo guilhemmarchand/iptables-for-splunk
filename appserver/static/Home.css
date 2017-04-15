@@ -65,3 +65,190 @@ text-align: center;
     padding: 12%;
     height: auto;
 }
+
+/* Prevents modal window from generating troubles within Splunk interfaces */
+.modal {
+  display: none;
+}
+/* Custom Modals widths */
+
+.modal[class^="custom-modal"] {
+	left: 50%;
+	border: 1px solid green;
+}
+
+.custom-modal-30 {
+    width: 30%;
+    margin-left: -15%;
+}
+
+.custom-modal-50 {
+    width: 50%;
+    margin-left: -25%;
+}
+
+.custom-modal-60 {
+    width: 60%;
+    margin-left: -30%;
+}
+
+.custom-modal-70 {
+    width: 70%;
+    margin-left: -35%;
+}
+
+.custom-modal-80 {
+    width: 80%;
+    margin-left: -40%;
+}
+
+.custom-modal-96 {
+    width: 96%;
+    margin-left: -48%;
+}
+
+/* Home page button links, inspired from http://www.w3schools.com */
+
+a.tryitbtn, a.tryitbtn:link, a.tryitbtn:visited, a.showbtn, a.showbtn:link, a.showbtn:visited {
+	display: inline-block;
+	color: #469496;
+	background-color:#FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 4px;
+	text-decoration: none;
+	margin-left: 0;
+	/* margin-left: 5px; */
+	margin-right: 10px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	border: 1px solid #469496;
+	border-radius: 5px;
+	white-space: nowrap;
+	min-width: 60px;
+}
+
+a.tryitbtn:hover,a.tryitbtn:active,a.tryitbtn:hover,a.tryitbtn:active
+{
+	background-color:#469496;color:#ffffff;
+}
+
+a.tryitbtnxl, a.tryitbtnxl:link, a.tryitbtnxl:visited, a.showbtnxl, a.showbtnxl:link, a.showbtnxl:visited {
+	display: inline-block;
+	color: #469496;
+	background-color:#FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 4px;
+	text-decoration: none;
+	margin-left: 0;
+	/* margin-left: 5px; */
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	border: 1px solid #469496;
+	border-radius: 5px;
+	white-space: nowrap;
+	min-width: 150px;
+}
+
+a.tryitbtnxl:hover,a.tryitbtnxl:active,a.tryitbtnxl:hover,a.tryitbtnxl:active
+{
+	background-color:#469496;color:#ffffff;
+}
+
+a.tryitbtnxxl, a.tryitbtnxxl:link, a.tryitbtnxxl:visited, a.showbtnxxl, a.showbtnxxl:link, a.showbtnxxl:visited {
+	display: inline-block;
+	color: #469496;
+	background-color:#FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 4px;
+	text-decoration: none;
+	margin-left: 0;
+	/* margin-left: 5px; */
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #aaaaaa;
+	border: 1px solid #469496;
+	border-radius: 5px;
+	white-space: nowrap;
+	min-width: 220px;
+}
+
+a.tryitbtnxxl:hover,a.tryitbtnxxl:active,a.tryitbtnxxl:hover,a.tryitbtnxxl:active
+{
+	background-color:#469496;color:#ffffff;
+}
+
+
+a.tryitbtn-alt, a.tryitbtn-alt:link, a.tryitbtn-alt:visited, a.tryitbtn-alt, a.tryitbtn-alt:link, a.tryitbtn-alt:visited {
+	display: inline-block;
+	color: #C171B1;
+	background-color: #FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 4px;
+	text-decoration: none;
+	margin-left: 0;
+	/* margin-left: 5px; */
+	margin-right: 10px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	border: 1px solid #C171B1;
+	border-radius: 5px;
+	white-space: nowrap;
+	min-width: 60px;
+}
+
+a.tryitbtn-alt:hover,a.tryitbtn-alt:active,a.tryitbtn-alt:hover,a.tryitbtn-alt:active
+{
+	background-color:#C171B1;color:#ffffff;
+}
+
+a.rt {
+	margin-left: 10px;
+}
+
+a.rt {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+}
+
+a.rt:hover img {
+    -webkit-transform:scale(1.10); /* Safari and Chrome */
+    -moz-transform:scale(1.10); /* Firefox */
+    -ms-transform:scale(1.10); /* IE 9 */
+    -o-transform:scale(1.10); /* Opera */
+     transform:scale(1.10);
+}
+
+/* manage button margin */
+
+.cat_title {
+	color: #5379af;
+	margin-bottom: 10px;
+}

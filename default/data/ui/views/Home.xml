@@ -44,6 +44,71 @@
                 </div>
             </html>
         </panel>
+        <panel>
+            <html>
+                <div style="text-align: center;">
+                    <a class="button2_lowpadding glow" data-toggle="modal" data-target="#Help_modal">SEARCH RAW EVENTS</a>
+                </div>
+            </html>
+        </panel>
+    </row>
+
+    <!-- Information panel -->
+
+    <row>
+        <panel>
+            <html>
+
+                <!-- Modal -->
+                <div class="modal custom-modal-60 fade" id="Help_modal" tabindex="-1" role="dialog" aria-labelledby="Help_modal_Label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                <div style="text-align: left;">
+                                    <h4 class="modal-title" id="Help_modal_Label">Integrated Navigation:</h4>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+
+                                <div style="text-align: center;">
+                                    <img src="../../static/app/iptables/logos/netfilter.png" alt="netfilter"/>
+                                    <h1>Netfilter Iptables</h1>
+                                </div>
+
+                                <h2>
+                                    Use the following links to explore iptables raw events:
+                                </h2>
+
+                                <div style="text-align:left;">
+                                    <h1>Related links:</h1>
+                                </div>
+
+                                <div style="text-align: center;" class="cat_title">
+
+                                    <a href="search?earliest=-24h&amp;latest=now&amp;q=search%20%60iptables_datasource%60" class="tryitbtnxxl">Explore RAW DATA »
+                                    </a>
+
+                                    <a href="search?earliest=-24h&amp;latest=now&amp;q=search%20%60iptables_datasource%60%20(%60traffic_denied%60)%20%60filter_badclients%60" class="tryitbtnxxl">Explore denied traffic »
+                                    </a>
+
+                                    <a href="search?earliest=-24h&amp;latest=now&amp;q=search%20%60iptables_datasource%60%20(%60traffic_accepted%60)%20%60filter_badclients%60" class="tryitbtnxxl">Explore allowed traffic »
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </html>
+        </panel>
     </row>
 
     <row>
