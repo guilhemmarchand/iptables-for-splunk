@@ -1,6 +1,6 @@
-<form stylesheet="Home.css,hover.css,hide_timeindicator.css" hideEdit="true">
+<form stylesheet="Home.css,hover.css,hide_timeindicator.css" script="modal.js" hideEdit="true">
     <label>Netfilter Iptables</label>
-    <description>Version 3.2.1</description>
+    <description>Version 3.2.2</description>
 
     <row>
         <panel>
@@ -46,8 +46,8 @@
         </panel>
         <panel>
             <html>
-                <div style="text-align: center;">
-                    <a class="button2_lowpadding glow" data-toggle="modal" data-target="#Help_modal">SEARCH RAW EVENTS</a>
+                <div style="text-align: center;" class="custom-modal">
+                    <a class="button2_lowpadding glow" data-modal-name="Help_modal">SEARCH RAW EVENTS</a>
                 </div>
             </html>
         </panel>

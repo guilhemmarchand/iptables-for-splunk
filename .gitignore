@@ -1,13 +1,13 @@
 #.gitignore
 
 # local configuration files
-local/*
+iptables/local/*
 
 # local metadata
-metadata/local.meta
+iptables/metadata/local.meta
 
 # Custom lookup table
-lookups/my_frameid_lookup.csv
+iptables/lookups/my_frameid_lookup.csv
 
 # Compiled Python files
 *.pyo

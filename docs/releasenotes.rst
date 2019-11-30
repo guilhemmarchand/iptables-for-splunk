@@ -13,6 +13,12 @@ What has been fixed by release
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 =======
+V3.2.2:
+=======
+
+- fix: Splunk 8.0.0 bootstrap modal compatibility issues
+
+=======
 V3.2.1:
 =======
 
